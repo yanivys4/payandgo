@@ -135,6 +135,7 @@ android {
 
     defaultConfig {
         applicationId "com.payandgo"
+        manifestPlaceholders = [auth0Domain: "dev-p3iiz9fp.eu.auth0.com", auth0Scheme: "${applicationId}"]
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

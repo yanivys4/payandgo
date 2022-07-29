@@ -4,10 +4,10 @@ import SInfo from "react-native-sensitive-info";
 import jwtDecode from 'jwt-decode';
 import * as RootNavigation from '../RootNavigation.js';
 
-import {AUTH0_DOMAIN,AUTH0_CLIENT_ID} from '@env';
+//import {AUTH0_DOMAIN,AUTH0_CLIENT_ID} from '@env';
 
-const a = AUTH0_DOMAIN;
-console.log(a);
+//const a = AUTH0_DOMAIN;
+//console.log(a);
 const auth0 = new Auth0({
   domain: "dev-p3iiz9fp.eu.auth0.com",
   clientId: "8RjX8ZEaZxGcjUx4SnScrpnNQOJBMBHF",

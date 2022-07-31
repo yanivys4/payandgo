@@ -7,7 +7,6 @@ const AuthMiddleware = ({children}) => {
     const {loggedIn} = useSelector((state)=>state.auth);
 
     useEffect(() => {
-        console.log(loggedIn);
         if(loggedIn == null){
             RootNavigation.navigate('Loading', {});
         }else if(loggedIn) {

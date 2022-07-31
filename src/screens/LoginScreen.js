@@ -26,7 +26,7 @@ const LoginScreen = () => {
         <View style={styles.container}>
             <Image
                 style={styles.image}
-                source={require('../photos/colorLogo.png')}
+                source={require('../assets/colorLogo.png')}
             />
             <Text style={styles.header}>Please Log in to continue</Text>
             {renderButton()}

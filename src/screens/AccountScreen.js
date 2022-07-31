@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import jwtDecode from "jwt-decode";
 import { logout } from '../slices/AuthSlice';
 import { Button } from '../components/common';
 
-const AccountScreen = ({ navigation }) => {
+const AccountScreen = () => {
 
   const dispatch = useDispatch();
   const { idToken } = useSelector(state => state.auth);
@@ -22,9 +22,7 @@ const AccountScreen = ({ navigation }) => {
       />
       <Button onPress={
         () => {
-          dispatch(logout()).then(res => {
-            navigation.navigate('Login');
-          })
+          dispatch(logout());
         }}
       >
         Sign Out

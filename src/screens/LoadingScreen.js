@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { localLogin } from '../slices/AuthSlice';
 
-const LoadingScreen = ({ navigation }) => {
+const LoadingScreen = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(localLogin());

@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
 import { Button } from '../components/common';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, setLoading } from '../slices/AuthSlice';
-import * as RootNavigation from '../RootNavigation.js';
 
 const LoginScreen = () => {
     const { loading } = useSelector((state) => state.auth);
@@ -16,11 +15,8 @@ const LoginScreen = () => {
         return (
             <Button onPress={
                 () => {
-                    dispatch(login()).then(res => {
-                        if (!res.payload) {
-                            dispatch(setLoading(false));
-                        }
-                    })
+                    dispatch(setLoading(true));
+                    dispatch(login());
                 }}>
                 Sign In
             </Button>

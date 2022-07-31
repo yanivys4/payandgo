@@ -1,9 +1,8 @@
 import SInfo from "react-native-sensitive-info";
 import jwtDecode from 'jwt-decode';
-import * as RootNavigation from '../RootNavigation.js';
 import auth0 from '../modules/AuthModule';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setIdToken } from '../slices/AuthSlice';
+import { setIdToken, setLoggedIn,setLoading } from '../slices/AuthSlice';
  
 export const localLogin = createAsyncThunk(
     'auth/local_login',
@@ -14,13 +13,14 @@ export const localLogin = createAsyncThunk(
                 const { exp } = jwtDecode(token);
                 if (exp < Date.now() / 1000) {
                     dispatch(setIdToken(null));
-                    RootNavigation.navigate('Login');
+                    dispatch(setLoggedIn(false));
+                    
                 } else {
                     dispatch(setIdToken(token));
-                    RootNavigation.navigate('Home');
+                    dispatch(setLoggedIn(true));
                 }
             } else {
-                RootNavigation.navigate('Login');
+                dispatch(setLoggedIn(false));
             }
         }
         catch (err) {
@@ -38,9 +38,8 @@ export const login = createAsyncThunk(
             });
             await SInfo.setItem('idToken', credentials.idToken, {});
             dispatch(setIdToken(credentials.idToken));
-            RootNavigation.navigate("Home", {});
-            return credentials.idToken;
-
+            dispatch(setLoggedIn(true));
+            dispatch(setLoading(false));
         } catch (err) {
             rejectWithValue('Error logging in');
         }
@@ -49,10 +48,11 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
     'auth/logout',
-    async (arg, { rejectWithValue }) => {
+    async ( _ , { rejectWithValue,dispatch }) => {
         try {
             auth0.webAuth.clearSession;
             await SInfo.deleteItem('idToken', {});
+            dispatch(setLoggedIn(false));
 
         } catch (err) {
             rejectWithValue('Error logging in');

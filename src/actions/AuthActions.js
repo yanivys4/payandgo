@@ -2,7 +2,7 @@ import SInfo from "react-native-sensitive-info";
 import jwtDecode from 'jwt-decode';
 import auth0 from '../modules/AuthModule';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setIdToken, setLoggedIn,setLoading } from '../slices/AuthSlice';
+import { setIdToken, setLoggedIn,setLoading,loginSuccess } from '../slices/AuthSlice';
  
 export const localLogin = createAsyncThunk(
     'auth/local_login',
@@ -37,9 +37,7 @@ export const login = createAsyncThunk(
                 scope: 'openid email profile',
             });
             await SInfo.setItem('idToken', credentials.idToken, {});
-            dispatch(setIdToken(credentials.idToken));
-            dispatch(setLoggedIn(true));
-            dispatch(setLoading(false));
+            dispatch(loginSuccess({idToken:credentials.idToken,loggedIn:true,loading:false}));
         } catch (err) {
             rejectWithValue('Error logging in');
         }

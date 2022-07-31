@@ -9,6 +9,7 @@ const AccountScreen = () => {
 
   const dispatch = useDispatch();
   const { idToken } = useSelector(state => state.auth);
+  console.log("idToken = ", idToken);
   const { name, picture, exp } = jwtDecode(idToken);
 
   if (exp < Date.now() / 1000) {

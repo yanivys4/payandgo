@@ -8,6 +8,7 @@ const LoadingScreen = () => {
     useEffect(() => {
         dispatch(localLogin());
     }, []);
+    
     return (
         <View style={styles.container}>
             <View>

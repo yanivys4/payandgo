@@ -1,19 +1,15 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import AccountScreen from './AccountScreen';
+import HistoryScreen from './HistoryScreen';
+import JoinScreen from './JoinScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabIcon from '../components/TabIcon';
 import ImageMap from '../assets/icons/ImagesMap';
+import TabButton from '../components/TabButton';
+
 
 const Tab = createBottomTabNavigator();
-
-function Notifications() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
-      <Text>Notifications!</Text>
-    </View>
-  );
-}
 
 const HomeScreen = () => {
 
@@ -22,17 +18,22 @@ const HomeScreen = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: styles.tabStyle,
-        ...styles.shadow
+        ...styles.shadow,
+        headerShown:false
       }}
-
-
     >
       <Tab.Screen name="Account" component={AccountScreen} options={{
-        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.Home , title: 'Account', focused })
+        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.Account , title: 'Account', focused })
       }}
       />
-      <Tab.Screen name="Notifications" component={Notifications} options={{
-
+       <Tab.Screen name="Join" component={JoinScreen} options={{
+        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.QR, focused,iconSize:'large' }),
+        tabBarButton : props => <TabButton {...props} />,
+        
+      }}
+      />
+      <Tab.Screen name="History" component={HistoryScreen} options={{
+        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.History , title: 'History', focused })
       }} />
     </Tab.Navigator>
   );

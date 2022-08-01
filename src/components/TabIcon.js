@@ -1,20 +1,23 @@
 import React from "react";
 import { View, StyleSheet, Image,Text } from 'react-native';
-import ImagesMap from "../assets/icons/ImagesMap";
 
-const TabIcon = ({ imageName, title, focused }) => {
-    console.log(imageName);
+const TabIcon = ({ imageName, title, focused, iconSize='small',color }) => {
+    
+    
+    const setImageStyle = (iconSize) => {
+        if(iconSize == 'large'){
+            return {width:60, height:60,tintColor:'white' };
+        }
+        return {width:35, height:35,tintColor:focused ? '#9e2b2b' : '#748c94'};
+    }
     const styles = StyleSheet.create({
         container: {
             alignItems: 'center',
             justifyContent: 'center',
             top: 5,
-
         },
         image: {
-            width: 40,
-            height: 40,
-            tintColor: focused ? '#9e2b2b' : '#748c94',
+            ...setImageStyle(iconSize)
         },
         title:{
             color: focused ? '#9e2b2b' : '#748c94',
@@ -29,7 +32,7 @@ const TabIcon = ({ imageName, title, focused }) => {
                 resizeMode='contain'
                 style={styles.image}
             />
-            <Text style={styles.title}>{title}</Text>
+            {title ? <Text style={styles.title}>{title}</Text> : null}
         </View>
     );
 }

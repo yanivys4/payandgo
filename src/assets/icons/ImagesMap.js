@@ -1,3 +1,5 @@
 export default {
-    'Home': require('./Home.png')
+    'Account': require('./Account.png'),
+    'History': require('./History.png'),
+    'QR': require('./QR.png')
 };

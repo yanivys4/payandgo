@@ -4,7 +4,8 @@ export { localLogin, login, logout } from '../actions/AuthActions';
 const initialState = {
   loading: false,
   idToken: null,
-  loggedIn: null
+  loggedIn: null,
+  userDetails:null
 }
 
 const AuthSlice = createSlice({
@@ -12,11 +13,11 @@ const AuthSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess(state,{payload}){
-      
-      const {idToken,loading,loggedIn} = payload;
+      const {idToken,loading,loggedIn,userDetails} = payload;
       state.idToken = idToken;
       state.loading = loading;
       state.loggedIn = loggedIn;
+      state.userDetails = userDetails;
     },
     setIdToken(state, { payload }) {
       state.idToken = payload;
@@ -27,6 +28,9 @@ const AuthSlice = createSlice({
     },
     setLoggedIn(state,{payload}){
       state.loggedIn = payload;
+    },
+    setUserDetails(state,{payload}){
+      state.userDetails = payload;
     }
   },
   extraReducers: builder => {
@@ -34,5 +38,5 @@ const AuthSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setIdToken, setLoading, setLoggedIn,loginSuccess } = AuthSlice.actions;
+export const { setIdToken, setLoading, setLoggedIn,loginSuccess,setUserDetails } = AuthSlice.actions;
 export default AuthSlice.reducer;

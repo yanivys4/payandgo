@@ -2,7 +2,7 @@ import SInfo from "react-native-sensitive-info";
 import jwtDecode from 'jwt-decode';
 import auth0 from '../modules/AuthModule';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setIdToken, setLoggedIn,setLoading,loginSuccess } from '../slices/AuthSlice';
+import { setIdToken, setLoggedIn,setUserDetails,loginSuccess } from '../slices/AuthSlice';
  
 export const localLogin = createAsyncThunk(
     'auth/local_login',
@@ -10,14 +10,15 @@ export const localLogin = createAsyncThunk(
         try {
             const token = await SInfo.getItem('idToken', {});
             if (token) {
-                const { exp } = jwtDecode(token);
-                if (exp < Date.now() / 1000) {
+                const userDetails = jwtDecode(token);
+                if (userDetails.exp < Date.now() / 1000) {
                     dispatch(setIdToken(null));
                     dispatch(setLoggedIn(false));
                     
                 } else {
                     dispatch(setIdToken(token));
                     dispatch(setLoggedIn(true));
+                    dispatch(setUserDetails(userDetails));
                 }
             } else {
                 dispatch(setLoggedIn(false));
@@ -37,7 +38,8 @@ export const login = createAsyncThunk(
                 scope: 'openid email profile',
             });
             await SInfo.setItem('idToken', credentials.idToken, {});
-            dispatch(loginSuccess({idToken:credentials.idToken,loggedIn:true,loading:false}));
+            const userDetails = jwtDecode(credentials.idToken);
+            dispatch(loginSuccess({idToken:credentials.idToken,loggedIn:true,loading:false,userDetails}));
         } catch (err) {
             rejectWithValue('Error logging in');
         }

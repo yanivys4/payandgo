@@ -8,8 +8,8 @@ import { Button } from '../components/common';
 const AccountScreen = () => {
 
   const dispatch = useDispatch();
-  const { idToken } = useSelector(state => state.auth);
-  const { name, picture, exp } = jwtDecode(idToken);
+  const { userDetails } = useSelector(state => state.auth);
+  const {picture,exp} = userDetails;
 
   if (exp < Date.now() / 1000) {
     throw new Error('ID token expired!');

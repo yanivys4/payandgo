@@ -1,4 +1,12 @@
 {
   "name": "payandgo",
-  "displayName": "payandgo"
+  "displayName": "payandgo",
+  "plugins": [
+    [
+      "react-native-vision-camera",
+      {
+        "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+      }
+    ]
+  ]
 }

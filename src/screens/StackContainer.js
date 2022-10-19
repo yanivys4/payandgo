@@ -5,6 +5,7 @@ import LoginScreen from './LoginScreen';
 import LoadingScreen from './LoadingScreen';
 import HomeScreen from './HomeScreen';
 import { navigationRef } from '../RootNavigation.js';
+import DinnerScreen from './DinnerScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +24,13 @@ const StackContainer = () => {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Dinner"
+          component={DinnerScreen}
+          options={{ headerShown: false }}
+        />
         </Stack.Navigator>
+
       </NavigationContainer>
     );
 }

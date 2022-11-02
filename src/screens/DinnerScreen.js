@@ -18,7 +18,8 @@ const DinnerScreen = () => {
         tabBarShowLabel: false,
         tabBarStyle: styles.tabStyle,
         ...styles.shadow,
-        headerShown:false
+        headerShown:false,
+        backgroundColor:'red'
       }}
     >
       <Tab.Screen name="Bill" component={BillScreen} options={{
@@ -35,10 +36,10 @@ const DinnerScreen = () => {
 
 const styles = StyleSheet.create({
   tabStyle: {
-    position: 'absolute',
-    bottom: 25,
-    left: 20,
-    right: 20,
+     position: 'absolute',
+    // bottom: 25,
+    // left: 20,
+    // right: 20,
     elevation: 0,
     backgroundColor: 'white',
     borderRadius: 15,

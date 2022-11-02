@@ -22,7 +22,9 @@ const styles = {
         elevation:1,
         marginRight:5,
         marginRight:5,
-        marginTop:5
+        marginTop:5,
+        // borderWidth:4,
+        // borderColor:'orange'
     }
 }
 

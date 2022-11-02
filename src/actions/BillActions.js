@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import mealsApi from '../../api/meals';
 
 export const fetchMeals = createAsyncThunk(

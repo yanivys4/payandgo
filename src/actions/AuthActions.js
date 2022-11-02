@@ -32,7 +32,7 @@ export const localLogin = createAsyncThunk(
 
 export const login = createAsyncThunk(
     'auth/login',
-    async (_, { rejectWithValue, dispatch }) => {
+    async (arg, { rejectWithValue, dispatch }) => {
         try {
             const credentials = await auth0.webAuth.authorize({
                 scope: 'openid email profile',
@@ -48,7 +48,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
     'auth/logout',
-    async ( _ , { rejectWithValue,dispatch }) => {
+    async ( arg , { rejectWithValue,dispatch }) => {
         try {
             auth0.webAuth.clearSession;
             await SInfo.deleteItem('idToken', {});

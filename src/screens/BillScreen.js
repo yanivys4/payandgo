@@ -1,25 +1,35 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet,Text } from 'react-native';
 import { Button } from '../components/common';
 import MealList from '../components/MealList';
-import PopupDialog from '../components/PopupDialog';
-import { deleteMealFromBill } from '../slices/BillSlice';
+import { setMealToDelete, deleteMealFromBill } from '../slices/BillSlice';
+import { addMeal } from '../slices/TableSlice';
 import { useSelector } from 'react-redux';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash'
+import {Card,CardSection} from '../components/common';
 
 const BillScreen = () => {
-    const { meals } = useSelector((state) => state.bill);
+    const { meals,amountToPay } = useSelector((state) => state.bill);
     
     return (
         <View style={styles.container}>
-            <PopupDialog
-                submitFunction={deleteMealFromBill}
-                title="How many to delete?"
-            />
             <View style={styles.mealListContainerStyle}>
-                <MealList meals={meals} pressIcon={faTrash} />
+                <MealList
+                    meals={meals}
+                    pressIcon={faTrash}
+                    iconColor='red'
+                    itemToDeleteFunc={setMealToDelete}
+                    itemToAddFunc={addMeal}
+                    deleteItemFunc={deleteMealFromBill} />
             </View>
-
+            
+                <View style={styles.amountToPayContainerStyle}>
+                    <Text 
+                    style={styles.amountToPayTextStyle}
+                    >{`Total to pay:${amountToPay}$`}
+                    </Text>
+                </View>
+                
             <View style={styles.buttonContainerStyle}>
                 <Button onPress={() => { console.log("PAY") }}> Pay your bill</Button>
             </View>
@@ -30,19 +40,29 @@ const BillScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        // borderWidth:4,
-        // borderColor:'red',
         flex: 1
     },
     mealListContainerStyle: {
-        // borderWidth:3,
-        // borderColor:'green',
-        flex: 4
-
+        flex: 3
+    },
+    amountToPayContainerStyle:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:'flex-end',
+       
     },
     buttonContainerStyle: {
         flex: 1,
-        marginTop: 10
+        marginTop: 10,
+        
+
+    },
+    amountToPayTextStyle:{
+        fontSize:22,
+        fontWeight:'bold',
+        color:'#9e2b2b',
+
     }
 });
+
 export default BillScreen;

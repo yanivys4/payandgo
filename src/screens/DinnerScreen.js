@@ -22,12 +22,12 @@ const DinnerScreen = () => {
         backgroundColor:'red'
       }}
     >
-      <Tab.Screen name="Bill" component={BillScreen} options={{
-        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.Bill , title: 'My Bill', focused })
+      <Tab.Screen name="Table" component={TableScreen} options={{
+        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.Table,title:'My Table', focused})
       }}
       />
-       <Tab.Screen name="Table" component={TableScreen} options={{
-        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.Table,title:'My Table', focused})
+      <Tab.Screen name="Bill" component={BillScreen} options={{
+        tabBarIcon: ({ focused }) => TabIcon({ imageName:ImageMap.Bill , title: 'My Bill', focused })
       }}
       />
     </Tab.Navigator>

@@ -1,9 +1,9 @@
 import { configureStore,combineReducers } from '@reduxjs/toolkit'
 import AuthReducer from './slices/AuthSlice';
 import BillReducer from './slices/BillSlice';
-import PopupDialogReducer from './slices/PopupDialogSlice';
+import TableReducer from './slices/TableSlice';
 
-const reducer = combineReducers({auth:AuthReducer,bill:BillReducer,popupdialog:PopupDialogReducer});
+const reducer = combineReducers({auth:AuthReducer,bill:BillReducer,table:TableReducer});
 export const store = configureStore({
   reducer
 });

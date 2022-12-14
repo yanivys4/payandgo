@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { setModalVisible,test } from "../slices/BillSlice";
 import { Button } from '../components/common';
-import DeleteModal from '../components/PopupDialog';
 import * as RootNavigation from '../RootNavigation';
 
 
@@ -17,7 +15,6 @@ const JoinScreen = () => {
       <Text>Join!</Text>
       <Button onPress={
         () => {
-          dispatch(test());
           RootNavigation.navigate('Dinner');
         }}
       >Join Table</Button>
